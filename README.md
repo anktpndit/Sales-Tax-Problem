@@ -6,3 +6,18 @@ finishing with the total cost of the items,
 and the total amounts of sales taxes paid. The rounding rules for sales tax are that for a tax
 rate of n%, a shelf price of p contains (np/100 rounded up to the nearest 0.05) amount of
 sales tax.
+
+# Cloning and Running the file
+
+1) Go to the terminal and clone the repository using the following command:
+
+```
+git clone https://github.com/anktpndit/Sales-Tax-Problem.git 
+```
+
+2) Cd into the cloned directory and run the test cases and the python script using the following command:
+
+```
+python3 test_salesTax.py 
+python3 salesTax.py
+```
