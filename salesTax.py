@@ -18,11 +18,11 @@ class Extra:
             for (lineNum, line) in enumerate(file):
                 line = line.rstrip()
                 print(line)
-                # using regex to check if pattern of the string matches to the required format
+                # using regex to check if the purchase.txt files have a correct format
                 if bool(re.fullmatch(r"^\d+(.*)\bat\b \d+.\d\d : (book|food|med|other)$", line)):
                     basket_goods.addGood(Good(line))
                 else:
-                    raise ValueError(f"Use the correct string pattern at line {lineNum+1} in the purchase.txt file!")
+                    raise ValueError(f"Use the correct format at line {lineNum+1} in the {filename}!")
         
         return basket_goods.getBasket()
 
@@ -32,7 +32,7 @@ class Extra:
         return round(round(value/nearestOf) * nearestOf,2)
     
 class Good:
-    """Good class represent the good that are bought"""
+    """Good class represents the good that is purchased"""
     exempt = ["book", "food", "med"]
 
     def __init__(self, input):
@@ -65,11 +65,11 @@ class Good:
     def getCategory(self):
         return self._category
 
-    # method for calculating sales tax of a good
+    # methods
     def SalesTax(self):
+        """Calculates the sales tax of a good"""
         salesTax = 0
         goodPrice = self.getPrice()
-        # !!!! change this if exempt 0 else 10%, and then import then add 5%
         if self.getCategory() in Good.exempt:
             salesTax=0
         else:
@@ -86,8 +86,21 @@ class Basket:
         self._totalSalesTax = 0
         self._totalPrice = 0
 
-    """Calculating our receipt from the basket"""
+    #setters
+    def addGood(self, good):
+        """Adds Goods into the Basket"""
+        if isinstance(good,Good):
+            self._basketArr.append(good)
+            return self
+        else:
+            raise ValueError(f"Type {type(good)} cannot be added to the basket! Instance of Good Class can only be added!")
+
+    #getters
+    def getBasket(self):
+        return self._basketArr
+
     def getReceipt(self):
+        """Calculating the receipt of all goods in the basket"""
         receipt = []
         for good in self._basketArr:
             salesTax = good.SalesTax()
@@ -102,24 +115,12 @@ class Basket:
         self._totalPrice = round(self._totalPrice,2)
         return ('\n').join(receipt)
 
-    #setters
-    def addGood(self, good):
-        if isinstance(good,Good):
-            self._basketArr.append(good)
-            return self
-        else:
-            raise ValueError(f"Type {type(good)} cannot be added to the basket! Instance of Good Class can only be added!")
-
-    #getters
-    def getBasket(self):
-        return self._basketArr
 
 if __name__== "__main__":
 
     for i in range(1,4):
         # making a basket for the purchased goods
         basket_goods = Basket()
-
         # reading the purchase.txt file and printing the receipt
         print("\n-----------------\nInput\n-----------------")
         Extra.lineReader(f'purchase{i}.txt',basket_goods)

@@ -48,8 +48,9 @@ class Extra(unittest.TestCase):
     def test_lineReader(self):
         """Testing whether goods are read correctly and added into the basket or not"""
         with self.assertRaises(ValueError):
-            test_basket = salesTax.Extra.lineReader('test/test_purchase_error.txt', salesTax.Basket())
+            salesTax.Extra.lineReader('test/test_purchase_error.txt', salesTax.Basket())
 
+        # testing for a file with correct format of purchased goods
         self.assertEqual(len(salesTax.Extra.lineReader('test/test_purchase.txt', salesTax.Basket())),3)
         
 
