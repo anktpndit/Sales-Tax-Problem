@@ -23,7 +23,6 @@ class Basket(unittest.TestCase):
         test_basket1.addGood(salesTax.Good('1 book at 12.49 : book')).addGood(salesTax.Good('1 music CD at 14.99 : other')).addGood(salesTax.Good('1 chocolate bar at 0.85 : food'))
         test_basket1.getReceipt()
         self.assertEqual(len(test_basket1.getBasket()),3)
-        # !!!! change this test case
         self.assertEqual(test_basket1._totalSalesTax,1.50)
         self.assertEqual(test_basket1._totalPrice,29.83)
 
@@ -32,7 +31,6 @@ class Basket(unittest.TestCase):
         test_basket2.addGood(salesTax.Good('1 imported box of chocolates at 10.00 : food')).addGood(salesTax.Good('1 imported bottle of perfume at 47.50 : other'))
         test_basket2.getReceipt()
         self.assertEqual(len(test_basket2.getBasket()),2)
-        # !!!! change this test case
         self.assertEqual(test_basket2._totalSalesTax,7.65)
         self.assertEqual(test_basket2._totalPrice,65.15)
 
@@ -41,7 +39,6 @@ class Basket(unittest.TestCase):
         test_basket3.addGood(salesTax.Good('1 imported bottle of perfume at 27.99 : other')).addGood(salesTax.Good('1 bottle of perfume at 18.99 : other')).addGood(salesTax.Good('1 packet of headache pills at 9.75 : med')).addGood(salesTax.Good('1 box of imported chocolates at 11.25 : food'))
         test_basket3.getReceipt()
         self.assertEqual(len(test_basket3.getBasket()),4)
-        # !!!! change this test case
         self.assertEqual(test_basket3._totalSalesTax,6.65)
         self.assertEqual(test_basket3._totalPrice,74.63)
 
