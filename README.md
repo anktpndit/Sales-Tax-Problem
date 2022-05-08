@@ -21,3 +21,5 @@ git clone https://github.com/anktpndit/Sales-Tax-Problem.git
 python3 test_salesTax.py 
 python3 salesTax.py
 ```
+
+Any purchase[1-3].txt file can be edited according to the purchases made and the receipt will be shown in the terminal.
